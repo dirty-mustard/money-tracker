@@ -1,0 +1,9 @@
+# IDEA
+/.idea/
+/money-tracker.iml
+
+# Mac OS X
+.DS_Store
+
+# Maven
+/target/
