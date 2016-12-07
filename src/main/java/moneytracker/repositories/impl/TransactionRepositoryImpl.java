@@ -38,7 +38,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @Repository
-public final class TransactionRepositoryImpl implements TransactionRepository {
+public class TransactionRepositoryImpl implements TransactionRepository {
 
     private static final Logger LOG = Logger.getLogger(TransactionRepositoryImpl.class);
 

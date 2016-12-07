@@ -17,7 +17,7 @@ import java.util.HashMap;
 import java.util.List;
 
 @Repository
-public final class TagRepositoryImpl implements TagRepository {
+public class TagRepositoryImpl implements TagRepository {
 
     private NamedParameterJdbcTemplate template;
     private SimpleJdbcInsert insert;
@@ -27,7 +27,7 @@ public final class TagRepositoryImpl implements TagRepository {
         template = new NamedParameterJdbcTemplate(dataSource);
         insert = new SimpleJdbcInsert(dataSource)
             .withTableName("MT_TB_TAGS")
-            .usingGeneratedKeyColumns("ID");
+            .usingGeneratedKeyColumns("id");
     }
 
     @Override

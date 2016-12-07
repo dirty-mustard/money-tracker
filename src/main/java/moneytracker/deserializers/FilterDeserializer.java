@@ -11,7 +11,7 @@ import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 import java.io.IOException;
 
-public final class FilterDeserializer extends JsonDeserializer<Filter> {
+public class FilterDeserializer extends JsonDeserializer<Filter> {
 
     @Autowired
     private FilterService filterService;

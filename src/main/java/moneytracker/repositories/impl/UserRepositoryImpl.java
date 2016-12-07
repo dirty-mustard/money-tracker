@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 import javax.sql.DataSource;
 
 @Repository
-public final class UserRepositoryImpl implements UserRepository {
+public class UserRepositoryImpl implements UserRepository {
 
     private NamedParameterJdbcTemplate template;
 

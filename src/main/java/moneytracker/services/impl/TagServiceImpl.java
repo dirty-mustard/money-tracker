@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-public final class TagServiceImpl implements TagService {
+public class TagServiceImpl implements TagService {
 
     @Autowired
     private TagRepository tagRepository;

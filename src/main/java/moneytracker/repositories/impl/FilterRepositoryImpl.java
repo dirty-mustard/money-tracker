@@ -19,7 +19,7 @@ import java.util.HashMap;
 import java.util.List;
 
 @Repository
-public final class FilterRepositoryImpl implements FilterRepository {
+public class FilterRepositoryImpl implements FilterRepository {
 
     private NamedParameterJdbcTemplate template;
     private SimpleJdbcInsert insert;
@@ -29,7 +29,7 @@ public final class FilterRepositoryImpl implements FilterRepository {
         template = new NamedParameterJdbcTemplate(dataSource);
         insert = new SimpleJdbcInsert(dataSource)
             .withTableName("MT_TB_FILTERS")
-            .usingGeneratedKeyColumns("ID");
+            .usingGeneratedKeyColumns("id");
     }
 
     @Override

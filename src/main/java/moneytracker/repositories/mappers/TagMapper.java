@@ -7,7 +7,7 @@ import org.springframework.jdbc.core.RowMapper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public final class TagMapper implements RowMapper<Tag> {
+public class TagMapper implements RowMapper<Tag> {
 
     private User owner;
 

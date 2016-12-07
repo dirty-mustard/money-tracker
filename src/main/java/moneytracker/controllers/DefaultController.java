@@ -25,7 +25,7 @@ public class DefaultController {
     @Autowired
     private ImportFacade importFacade;
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(value = "/import", method = RequestMethod.GET)
     public String index(Model model) {
         model.addAttribute("user", securityContext.getAuthenticatedUser());
         return "index";

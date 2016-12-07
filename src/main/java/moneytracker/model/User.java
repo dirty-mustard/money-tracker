@@ -4,20 +4,15 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import moneytracker.validation.Adding;
 import moneytracker.validation.Updating;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
-import java.util.LinkedList;
 import java.util.Objects;
 
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-public class User implements Entity, UserDetails, Serializable {
+public class User implements Entity, Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -54,7 +49,6 @@ public class User implements Entity, UserDetails, Serializable {
         this.createdAt = createdAt;
     }
 
-    @Override
     public String getUsername() {
         return username;
     }
@@ -63,40 +57,12 @@ public class User implements Entity, UserDetails, Serializable {
         this.username = username;
     }
 
-    @Override
     public String getPassword() {
         return password;
     }
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return new LinkedList<SimpleGrantedAuthority>() {{
-            add(new SimpleGrantedAuthority("ROLE_USER"));
-        }};
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return true;
     }
 
     @Override

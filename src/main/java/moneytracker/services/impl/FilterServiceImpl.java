@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-public final class FilterServiceImpl implements FilterService {
+public class FilterServiceImpl implements FilterService {
 
     @Autowired
     private FilterRepository filterRepository;

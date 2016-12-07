@@ -12,7 +12,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-public final class AbnAmroParser extends AbstractTransactionParser {
+public class AbnAmroParser extends AbstractTransactionParser {
 
     private SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyyMMdd");
     private DecimalFormat amountFormatter = (DecimalFormat) DecimalFormat.getInstance(new Locale("nl"));

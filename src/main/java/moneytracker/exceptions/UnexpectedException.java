@@ -1,6 +1,6 @@
 package moneytracker.exceptions;
 
-public final class UnexpectedException extends ApplicationException {
+public class UnexpectedException extends ApplicationException {
 
     public UnexpectedException() {
         // Empty constructor
