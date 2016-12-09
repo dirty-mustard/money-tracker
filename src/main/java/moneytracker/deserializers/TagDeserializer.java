@@ -11,7 +11,7 @@ import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 import java.io.IOException;
 
-public final class TagDeserializer extends JsonDeserializer<Tag> {
+public class TagDeserializer extends JsonDeserializer<Tag> {
 
     @Autowired
     private TagService tagService;

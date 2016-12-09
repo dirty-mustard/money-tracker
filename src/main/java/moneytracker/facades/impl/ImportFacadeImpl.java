@@ -20,7 +20,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 @Service
-public final class ImportFacadeImpl implements ImportFacade {
+public class ImportFacadeImpl implements ImportFacade {
 
     @Autowired
     private TransactionRepository transactionRepository;

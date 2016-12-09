@@ -1,0 +1,48 @@
+{
+  "transaction": {
+    "properties": {
+      "date": {
+        "format": "strict_date_optional_time||epoch_millis",
+        "type": "date"
+      },
+      "owner": {
+        "type": "long"
+      },
+      "accountHolder": {
+        "type": "string"
+      },
+      "archived": {
+        "type": "boolean"
+      },
+      "amount": {
+        "type": "double"
+      },
+      "offsetAccount": {
+        "type": "string"
+      },
+      "name": {
+        "type": "string"
+      },
+      "description": {
+        "type": "string"
+      },
+      "locked": {
+        "type": "boolean"
+      },
+      "account": {
+        "type": "string"
+      },
+      "tags": {
+        "type": "nested",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "id": {
+            "type": "long"
+          }
+        }
+      }
+    }
+  }
+}

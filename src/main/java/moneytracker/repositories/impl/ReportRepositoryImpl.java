@@ -18,7 +18,7 @@ import java.util.HashMap;
 import java.util.List;
 
 @Repository
-public final class ReportRepositoryImpl implements ReportRepository {
+public class ReportRepositoryImpl implements ReportRepository {
 
     private NamedParameterJdbcTemplate template;
     private SimpleJdbcInsert insert;
@@ -28,7 +28,7 @@ public final class ReportRepositoryImpl implements ReportRepository {
         template = new NamedParameterJdbcTemplate(dataSource);
         insert = new SimpleJdbcInsert(dataSource)
             .withTableName("MT_TB_REPORTS")
-            .usingGeneratedKeyColumns("ID");
+            .usingGeneratedKeyColumns("id");
     }
 
     @Override

@@ -1,7 +1,6 @@
 package moneytracker.services.impl;
 
 import moneytracker.exceptions.NotFoundException;
-import moneytracker.model.Filter;
 import moneytracker.model.Rule;
 import moneytracker.model.Transaction;
 import moneytracker.model.User;
@@ -10,7 +9,6 @@ import moneytracker.repositories.RuleRepository;
 import moneytracker.repositories.TagRepository;
 import moneytracker.repositories.TransactionRepository;
 import moneytracker.services.RuleService;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
@@ -19,7 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-public final class RuleServiceImpl implements RuleService {
+public class RuleServiceImpl implements RuleService {
 
     @Autowired
     private RuleRepository ruleRepository;

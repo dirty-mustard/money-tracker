@@ -1,6 +1,6 @@
 package moneytracker.exceptions;
 
-public final class NotFoundException extends ApplicationException {
+public class NotFoundException extends ApplicationException {
 
     public NotFoundException() {
         // Empty constructor

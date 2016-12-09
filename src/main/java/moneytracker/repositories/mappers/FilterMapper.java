@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public final class FilterMapper implements RowMapper<Filter> {
+public class FilterMapper implements RowMapper<Filter> {
 
     private User owner;
 

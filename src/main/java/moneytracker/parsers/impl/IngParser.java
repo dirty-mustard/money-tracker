@@ -11,7 +11,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 
-public final class IngParser extends AbstractTransactionParser {
+public class IngParser extends AbstractTransactionParser {
 
     private SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyyMMdd");
     private DecimalFormat amountFormatter = (DecimalFormat) DecimalFormat.getInstance(new Locale("nl"));

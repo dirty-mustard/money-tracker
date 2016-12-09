@@ -17,7 +17,7 @@ import java.util.HashMap;
 import java.util.List;
 
 @Repository
-public final class RuleRepositoryImpl implements RuleRepository {
+public class RuleRepositoryImpl implements RuleRepository {
 
     private NamedParameterJdbcTemplate template;
     private SimpleJdbcInsert insert;
@@ -27,7 +27,7 @@ public final class RuleRepositoryImpl implements RuleRepository {
         template = new NamedParameterJdbcTemplate(dataSource);
         insert = new SimpleJdbcInsert(dataSource)
             .withTableName("MT_TB_RULES")
-            .usingGeneratedKeyColumns("ID");
+            .usingGeneratedKeyColumns("id");
     }
 
     @Override

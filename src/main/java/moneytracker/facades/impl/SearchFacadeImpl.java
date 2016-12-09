@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public final class SearchFacadeImpl implements SearchFacade {
+public class SearchFacadeImpl implements SearchFacade {
 
     @Autowired
     private TransactionService transactionService;
