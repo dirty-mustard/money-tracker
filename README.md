@@ -1,14 +1,14 @@
 # Money Tracker
 
-## Docker containers (required)
+## Requirements to run Money Tracker
 
-    docker run -d --name postgres -e POSTGRES_PASSWORD=moneytracker -e POSTGRES_USER=moneytracker -e POSTGRES_DB=moneytracker -p 5432:5432 postgres
-    docker run -d --name elasticsearch -p 9200:9200 -p 9300:9300 elasticsearch:2
+    - docker
+    - docker-compose (https://docs.docker.com/compose/install/)
+
+## Running Money Tracker API
+
+    mvn clean package && docker-compose run -d -p 8080:8080 mt-backend
 
 ### Installing Elasticsearch "head" plugin (optional)
 
-    docker exec elasticsearch bin/plugin install mobz/elasticsearch-head
-
-## Running Money Tracker
-
-    mvn clean package && docker run -p 8080:8080 money-tracker/money-tracker
+    docker exec moneytracker_elasticsearch_1 bin/plugin install mobz/elasticsearch-head
