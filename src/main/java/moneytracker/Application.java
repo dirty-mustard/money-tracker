@@ -38,12 +38,6 @@ public class Application implements ApplicationRunner {
 
     @Override
     public void run(final ApplicationArguments applicationArguments) throws Exception {
-        final ResourceDatabasePopulator dbPopulator = new ResourceDatabasePopulator();
-        dbPopulator.addScript(new ClassPathResource("destroy.sql"));
-        dbPopulator.addScript(new ClassPathResource("init.sql"));
-        dbPopulator.addScript(new ClassPathResource("data.sql"));
-        dbPopulator.execute(dataSource);
-
         final IndicesExistsResponse existsResponse = elasticsearch.admin()
                 .indices()
                 .prepareExists("transactions")

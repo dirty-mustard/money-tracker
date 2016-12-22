@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://money-tracker-db:5432/moneytracker
+    username: moneytracker
+    password: moneytracker
+    driver-class-name: org.postgresql.Driver
+  resources:
+    static-locations: classpath:/pages/
+  mvc:
+    view:
+      suffix: .jsp
+  data:
+    elasticsearch:
+      cluster-nodes: money-tracker-index-server:9300
