@@ -1,9 +1,13 @@
 # Money Tracker
 
+## Create network
+
+    docker network create money-tracker-network
+
 ## Docker containers (required)
 
-    docker run -d --name postgres -e POSTGRES_PASSWORD=moneytracker -e POSTGRES_USER=moneytracker -e POSTGRES_DB=moneytracker -p 5432:5432 postgres
-    docker run -d --name elasticsearch -p 9200:9200 -p 9300:9300 elasticsearch:2
+    docker run -d --name postgres -e POSTGRES_PASSWORD=moneytracker -e POSTGRES_USER=moneytracker -e POSTGRES_DB=moneytracker -p 5432:5432 --network money-tracker-network postgres
+    docker run -d --name elasticsearch -p 9200:9200 -p 9300:9300 --network money-tracker-network elasticsearch:2
 
 ### Installing Elasticsearch "head" plugin (optional)
 
@@ -11,4 +15,4 @@
 
 ## Running Money Tracker
 
-    mvn clean package && docker run -p 8080:8080 money-tracker/money-tracker
+    mvn clean package && docker run -p 8080:8080 --network money-tracker-network money-tracker/money-tracker
