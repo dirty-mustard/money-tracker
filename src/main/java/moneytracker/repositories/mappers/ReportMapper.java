@@ -22,6 +22,7 @@ public class ReportMapper implements RowMapper<Report> {
         report.setId(resultSet.getLong("ID"));
         report.setCreatedAt(resultSet.getTimestamp("CREATED_AT"));
         report.setName(resultSet.getString("NAME"));
+        report.setIcon(resultSet.getString("ICON"));
 
         report.setOwner(owner);
 
