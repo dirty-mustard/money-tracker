@@ -25,13 +25,16 @@ public class PieChart {
         @JsonProperty("y")
         private BigDecimal value;
 
+        private String color;
+
         public Point() {
             // Empty constructor
         }
 
-        public Point(String name, BigDecimal value) {
+        public Point(String name, BigDecimal value, String color) {
             this.name = name;
             this.value = value;
+            this.color = color;
         }
 
         public String getName() {
@@ -48,6 +51,14 @@ public class PieChart {
 
         public void setValue(BigDecimal value) {
             this.value = value;
+        }
+
+        public String getColor() {
+            return color;
+        }
+
+        public void setColor(String color) {
+            this.color = color;
         }
     }
 
