@@ -65,8 +65,8 @@ public class Application implements ApplicationRunner {
         return new WebMvcConfigurerAdapter() {
             @Override
             public void addCorsMappings(final CorsRegistry registry) {
-                registry.addMapping("/api/**");
-                registry.addMapping("/import");
+                registry.addMapping("/api/**").allowedHeaders("*").allowedMethods("*").allowedOrigins("*");
+                registry.addMapping("/import").allowedHeaders("*").allowedMethods("*").allowedOrigins("*");
             }
         };
     }

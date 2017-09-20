@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: money-tracker-index-server
+  namespace: money-tracker
+spec:
+  type: NodePort
+  ports:
+    - port: 9200
+      name: http
+      protocol: TCP
+      nodePort: 31002
+    - port: 9300
+      name: binary
+      protocol: TCP
+      nodePort: 31003
+  selector:
+    app: money-tracker-index-server

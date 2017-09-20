@@ -1,0 +1,18 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: money-tracker-index-server
+  namespace: money-tracker
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: money-tracker-index-server
+    spec:
+      containers:
+      - name: elasticsearch
+        image: elasticsearch:2
+        ports:
+        - containerPort: 9200
+        - containerPort: 9300

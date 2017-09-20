@@ -16,3 +16,16 @@
 ## Running Money Tracker
 
     mvn clean package && docker run -p 8080:8080 --network money-tracker-network money-tracker/money-tracker
+
+
+
+    minikube docker-env
+    
+    eval $(minikube docker-env)
+    
+    export DOCKER_REGISTRY='192.168.99.100:2376' && mvn clean package
+
+
+
+kubectl create -f deployment.yaml
+kubectl delete deployment money-tracker
