@@ -20,8 +20,8 @@ spec:
         - containerPort: 9200
         - containerPort: 9300
         env:
-        - ES_JAVA_OPTS: '-Xms512m -Xmx512m'
-
+                - name: 'ES_JAVA_OPTS'
+                  value: '-Xms512m -Xmx512m'
       volumes:
       - name: index-server-storage
         emptyDir: {}
