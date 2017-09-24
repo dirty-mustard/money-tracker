@@ -13,6 +13,9 @@ spec:
       containers:
       - name: postgres
         image: postgres
+        volumeMounts:
+          - name: postgres-storage
+            mountPath: /var/lib/postgresql
         ports:
         - containerPort: 5432
         env:
@@ -28,3 +31,6 @@ spec:
               key: username
         - name: POSTGRES_DB
           value: 'money-tracker'
+      volumes:
+      - name: postgres-storage
+        emptyDir: {}

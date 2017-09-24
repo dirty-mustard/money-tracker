@@ -13,6 +13,15 @@ spec:
       containers:
       - name: elasticsearch
         image: elasticsearch:2
+        volumeMounts:
+          - name: index-server-storage
+            mountPath: /usr/share/elasticsearch/data
         ports:
         - containerPort: 9200
         - containerPort: 9300
+        env:
+        - ES_JAVA_OPTS: '-Xms512m -Xmx512m'
+
+      volumes:
+      - name: index-server-storage
+        emptyDir: {}

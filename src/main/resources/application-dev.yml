@@ -1,8 +1,8 @@
 spring:
   datasource:
     url: jdbc:postgresql://192.168.99.100:31010/money-tracker
-    username: money-tracker
-    password: money-tracker
+    username: moneytracker
+    password: moneytracker
     driver-class-name: org.postgresql.Driver
   resources:
     static-locations: classpath:/pages/
