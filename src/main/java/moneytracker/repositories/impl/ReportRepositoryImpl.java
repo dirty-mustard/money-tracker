@@ -34,7 +34,7 @@ public class ReportRepositoryImpl implements ReportRepository {
     @Override
     public Report get(User owner, Long id) {
         Report report = template.queryForObject(
-            "SELECT ID, CREATED_AT, NAME, FILTER_ID " +
+            "SELECT ID, CREATED_AT, NAME, ICON, FILTER_ID " +
                 "FROM MT_TB_REPORTS " +
                 "WHERE OWNER_ID = :ownerId AND ID = :id",
             new MapSqlParameterSource()
@@ -69,6 +69,7 @@ public class ReportRepositoryImpl implements ReportRepository {
         Number id = insert.executeAndReturnKey(new HashMap<String, Object>() {{
             put("CREATED_AT", report.getCreatedAt());
             put("NAME", report.getName());
+            put("ICON", report.getIcon());
             put("FILTER_ID", report.getFilter().getId());
             put("OWNER_ID", report.getOwner().getId());
         }});
@@ -89,10 +90,11 @@ public class ReportRepositoryImpl implements ReportRepository {
     private void update(Report report) {
         template.update(
             "UPDATE MT_TB_REPORTS " +
-                "SET NAME = :name, FILTER_ID = :filterId " +
+                "SET NAME = :name, ICON = :icon, FILTER_ID = :filterId " +
                 "WHERE ID = :id",
             new MapSqlParameterSource()
                 .addValue("name", report.getName())
+                .addValue("icon", report.getIcon())
                 .addValue("filterId", report.getFilter().getId())
                 .addValue("id", report.getId())
         );
@@ -133,7 +135,7 @@ public class ReportRepositoryImpl implements ReportRepository {
     @Override
     public List<Report> list(User owner) {
         List<Report> reports = template.query(
-            "SELECT ID, CREATED_AT, NAME, FILTER_ID " +
+            "SELECT ID, CREATED_AT, NAME, ICON, FILTER_ID " +
                 "FROM MT_TB_REPORTS " +
                 "WHERE OWNER_ID = :ownerId " +
                 "ORDER BY NAME ASC",

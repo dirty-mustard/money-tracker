@@ -38,6 +38,11 @@ public class Report implements Entity, Serializable {
     @JsonView(ReportView.class)
     private String name;
 
+    @Size(groups = {Adding.class, Updating.class}, min = 1, max = 100)
+    // Serialization
+    @JsonView(ReportView.class)
+    private String icon;
+
     // Validation
     @NotNull(groups = Adding.class, message = "A filter must be specified")
     // Serialization
@@ -82,6 +87,14 @@ public class Report implements Entity, Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
     }
 
     public Filter getFilter() {

@@ -84,7 +84,7 @@ public class TransactionServiceImpl implements TransactionService {
 
         transactionRepository.pieChart(owner, filter).entrySet().forEach(entry -> {
             Tag tag = tagRepository.get(owner, entry.getKey());
-            chart.getPoints().add(new PieChart.Point(tag.getName(), entry.getValue()));
+            chart.getPoints().add(new PieChart.Point(tag.getName(), entry.getValue(), tag.getColor()));
         });
 
         return chart;
