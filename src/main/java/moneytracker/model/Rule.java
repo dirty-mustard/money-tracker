@@ -35,7 +35,6 @@ public class Rule implements Entity, Serializable {
     // Serialization
     @JsonView(RuleView.class)
     @JsonDeserialize(using = FilterDeserializer.class)
-    @JsonIdentityReference(alwaysAsId = true)
     private Filter filter;
 
     @JsonView(RuleView.class)
@@ -46,7 +45,6 @@ public class Rule implements Entity, Serializable {
 
     @JsonView(RuleView.class)
     @JsonDeserialize(contentUsing = TagDeserializer.class)
-    @JsonIdentityReference(alwaysAsId = true)
     private List<Tag> tagsToApply = new ArrayList<>();
 
     private User owner;

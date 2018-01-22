@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:postgresql://postgres:5432/moneytracker
+    url: jdbc:postgresql://database:5432/moneytracker
     username: moneytracker
     password: moneytracker
     driver-class-name: org.postgresql.Driver

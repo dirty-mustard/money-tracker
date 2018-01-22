@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import moneytracker.validation.Adding;
 import moneytracker.validation.Updating;
+import moneytracker.views.RuleView;
 import moneytracker.views.TagView;
 import moneytracker.views.TransactionIndexView;
 import moneytracker.views.TransactionView;
@@ -21,7 +22,12 @@ public class Tag implements Entity, Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @JsonView({TagView.class, TransactionView.class, TransactionIndexView.class})
+    @JsonView({
+        TagView.class,
+        TransactionView.class,
+        TransactionIndexView.class,
+        RuleView.class
+    })
     private Long id;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "UTC")
@@ -32,7 +38,7 @@ public class Tag implements Entity, Serializable {
     @NotNull(groups = Adding.class, message = "A name must be specified")
     @Size(groups = {Adding.class, Updating.class}, min = 1, max = 100)
     // Serialization
-    @JsonView({TagView.class, TransactionView.class})
+    @JsonView({TagView.class, TransactionView.class, RuleView.class})
     private String name;
 
     // Validation

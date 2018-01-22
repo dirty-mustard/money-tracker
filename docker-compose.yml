@@ -1,0 +1,22 @@
+version: '2'
+services:
+  database:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: moneytracker
+      POSTGRES_USER: moneytracker
+      POSTGRES_DB: moneytracker
+    ports:
+      - "5432:5432"
+  elasticsearch:
+    image: elasticsearch:2
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+  mt-backend:
+    image: dirty-mustard/money-tracker
+    ports:
+      - "8080:8080"
+    depends_on:
+      - database
+      - elasticsearch

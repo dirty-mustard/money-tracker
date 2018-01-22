@@ -11,6 +11,7 @@ import moneytracker.deserializers.TagDeserializer;
 import moneytracker.validation.Adding;
 import moneytracker.validation.Updating;
 import moneytracker.views.FilterView;
+import moneytracker.views.RuleView;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.IterableUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -28,7 +29,7 @@ public class Filter implements Entity, Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @JsonView(FilterView.class)
+    @JsonView({FilterView.class, RuleView.class})
     private Long id;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "UTC")
@@ -39,7 +40,7 @@ public class Filter implements Entity, Serializable {
     @NotNull(groups = Adding.class, message = "A name must be specified")
     @Size(groups = {Adding.class, Updating.class}, min = 1, max = 100)
     // Serialization
-    @JsonView(FilterView.class)
+    @JsonView({FilterView.class, RuleView.class})
     private String name;
 
     @JsonView(FilterView.class)
