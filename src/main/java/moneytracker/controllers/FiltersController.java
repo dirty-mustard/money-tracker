@@ -1,12 +1,16 @@
 package moneytracker.controllers;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import moneytracker.model.Transaction;
+import moneytracker.model.User;
 import moneytracker.security.SecurityContext;
 import moneytracker.model.Filter;
 import moneytracker.services.FilterService;
+import moneytracker.services.TransactionService;
 import moneytracker.validation.Adding;
 import moneytracker.validation.Updating;
 import moneytracker.views.FilterView;
+import moneytracker.views.TransactionView;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,6 +29,9 @@ public class FiltersController {
 
     @Autowired
     private FilterService filterService;
+
+    @Autowired
+    private TransactionService transactionService;
 
     @RequestMapping(method = RequestMethod.GET)
     @JsonView(FilterView.class)
@@ -67,6 +74,15 @@ public class FiltersController {
     public void remove(@PathVariable Long id) {
         Filter filter = filterService.get(securityContext.getAuthenticatedUser(), id);
         filterService.remove(filter);
+    }
+
+    @RequestMapping(value = "/{id}/transactions", method = RequestMethod.GET)
+    @JsonView(TransactionView.class)
+    public List<Transaction> transactions(@PathVariable Long id) {
+        User owner = securityContext.getAuthenticatedUser();
+        Filter filter = filterService.get(owner, id);
+
+        return transactionService.search(owner, filter);
     }
 
 }
