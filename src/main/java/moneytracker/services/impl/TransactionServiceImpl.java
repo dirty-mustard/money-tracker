@@ -5,7 +5,7 @@ import moneytracker.model.Filter;
 import moneytracker.model.PieChart;
 import moneytracker.model.Tag;
 import moneytracker.model.Transaction;
-import moneytracker.model.User;
+import moneytracker.model.ApplicationUser;
 import moneytracker.repositories.TagRepository;
 import moneytracker.repositories.TransactionRepository;
 import moneytracker.services.TransactionService;
@@ -26,22 +26,26 @@ public class TransactionServiceImpl implements TransactionService {
     private TagRepository tagRepository;
 
     @Override
-    public List<Transaction> search(User owner, Filter filter) {
+    public List<Transaction> search(ApplicationUser owner, Filter filter) {
         List<Transaction> transactions = transactionRepository.list(owner, filter);
         transactions.forEach(
-            transaction -> transaction.setTags(
-                tagRepository.list(
-                    owner,
-                    transaction.getTags().stream().map(Tag::getId).collect(Collectors.toList())
-                )
-            )
+            transaction -> {
+                if (!transaction.getTags().isEmpty()) {
+                    transaction.setTags(
+                            tagRepository.list(
+                                    owner,
+                                    transaction.getTags().stream().map(Tag::getId).collect(Collectors.toList())
+                            )
+                    );
+                }
+            }
         );
 
         return transactions;
     }
 
     @Override
-    public Transaction get(User owner, String id) throws NotFoundException {
+    public Transaction get(ApplicationUser owner, String id) throws NotFoundException {
         try {
             return transactionRepository.get(owner, id);
         } catch (DataAccessException e) {
@@ -79,7 +83,7 @@ public class TransactionServiceImpl implements TransactionService {
     }
 
     @Override
-    public PieChart pieChart(User owner, Filter filter) {
+    public PieChart pieChart(ApplicationUser owner, Filter filter) {
         PieChart chart = new PieChart();
 
         transactionRepository.pieChart(owner, filter).entrySet().forEach(entry -> {

@@ -2,7 +2,7 @@ package moneytracker.repositories.impl;
 
 import moneytracker.model.Rule;
 import moneytracker.model.Tag;
-import moneytracker.model.User;
+import moneytracker.model.ApplicationUser;
 import moneytracker.repositories.RuleRepository;
 import moneytracker.repositories.mappers.RuleMapper;
 import org.apache.commons.collections4.CollectionUtils;
@@ -31,7 +31,7 @@ public class RuleRepositoryImpl implements RuleRepository {
     }
 
     @Override
-    public Rule get(User owner, Long id) {
+    public Rule get(ApplicationUser owner, Long id) {
         return template.queryForObject(
             "SELECT ID, CREATED_AT, ARCHIVE, ENABLED, FILTER_ID " +
                 "FROM MT_TB_RULES " +
@@ -121,7 +121,7 @@ public class RuleRepositoryImpl implements RuleRepository {
     }
 
     @Override
-    public List<Rule> list(User owner) {
+    public List<Rule> list(ApplicationUser owner) {
         return template.query(
             "SELECT ID, CREATED_AT, ARCHIVE, ENABLED, FILTER_ID " +
                 "FROM MT_TB_RULES " +

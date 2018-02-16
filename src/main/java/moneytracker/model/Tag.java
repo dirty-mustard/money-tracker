@@ -49,7 +49,7 @@ public class Tag implements Entity, Serializable {
     private String color;
 
     @JsonView
-    private User owner;
+    private ApplicationUser owner;
 
     @Override
     @JsonView
@@ -89,11 +89,11 @@ public class Tag implements Entity, Serializable {
         this.color = color;
     }
 
-    public User getOwner() {
+    public ApplicationUser getOwner() {
         return owner;
     }
 
-    public void setOwner(User owner) {
+    public void setOwner(ApplicationUser owner) {
         this.owner = owner;
     }
 

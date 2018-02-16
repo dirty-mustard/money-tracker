@@ -2,15 +2,15 @@ package moneytracker.services;
 
 import moneytracker.exceptions.NotFoundException;
 import moneytracker.model.Report;
-import moneytracker.model.User;
+import moneytracker.model.ApplicationUser;
 
 import java.util.List;
 
 public interface ReportService {
 
-    List<Report> list(User owner);
+    List<Report> list(ApplicationUser owner);
 
-    Report get(User owner, Long id) throws NotFoundException;
+    Report get(ApplicationUser owner, Long id) throws NotFoundException;
 
     void save(Report report);
 

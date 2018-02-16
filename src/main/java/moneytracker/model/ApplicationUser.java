@@ -12,7 +12,7 @@ import java.util.Date;
 import java.util.Objects;
 
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-public class User implements Entity, Serializable {
+public class ApplicationUser implements Entity, Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -25,7 +25,7 @@ public class User implements Entity, Serializable {
     private String username;
 
     @NotNull(groups = Adding.class)
-    @Size(groups = {Adding.class, Updating.class}, min = 60, max = 60)
+    @Size(groups = {Adding.class, Updating.class}, min = 8, max = 60)
     private String password;
 
     @Override
@@ -75,9 +75,9 @@ public class User implements Entity, Serializable {
             return false;
         }
 
-        User user = (User) o;
+        ApplicationUser applicationUser = (ApplicationUser) o;
 
-        return Objects.equals(id, user.id);
+        return Objects.equals(id, applicationUser.id);
     }
 
     @Override

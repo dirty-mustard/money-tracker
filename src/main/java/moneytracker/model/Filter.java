@@ -88,7 +88,7 @@ public class Filter implements Entity, Serializable {
     @JsonView(FilterView.class)
     private List<FilterOption> options = new ArrayList<>();
 
-    private User owner;
+    private ApplicationUser owner;
 
     @Override
     @JsonView
@@ -244,11 +244,11 @@ public class Filter implements Entity, Serializable {
         return IterableUtils.contains(options, FilterOption.UNTAGGED);
     }
 
-    public User getOwner() {
+    public ApplicationUser getOwner() {
         return owner;
     }
 
-    public void setOwner(User owner) {
+    public void setOwner(ApplicationUser owner) {
         this.owner = owner;
     }
 

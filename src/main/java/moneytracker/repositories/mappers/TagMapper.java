@@ -1,7 +1,7 @@
 package moneytracker.repositories.mappers;
 
 import moneytracker.model.Tag;
-import moneytracker.model.User;
+import moneytracker.model.ApplicationUser;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
@@ -9,9 +9,9 @@ import java.sql.SQLException;
 
 public class TagMapper implements RowMapper<Tag> {
 
-    private User owner;
+    private ApplicationUser owner;
 
-    public TagMapper(User owner) {
+    public TagMapper(ApplicationUser owner) {
         this.owner = owner;
     }
 

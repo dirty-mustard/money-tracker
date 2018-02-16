@@ -2,7 +2,7 @@ package moneytracker.repositories.mappers;
 
 import moneytracker.model.AmountFilter;
 import moneytracker.model.Filter;
-import moneytracker.model.User;
+import moneytracker.model.ApplicationUser;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.math.BigDecimal;
@@ -11,9 +11,9 @@ import java.sql.SQLException;
 
 public class FilterMapper implements RowMapper<Filter> {
 
-    private User owner;
+    private ApplicationUser owner;
 
-    public FilterMapper(User owner) {
+    public FilterMapper(ApplicationUser owner) {
         this.owner = owner;
     }
 

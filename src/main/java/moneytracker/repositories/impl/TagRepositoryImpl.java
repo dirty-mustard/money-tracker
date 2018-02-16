@@ -3,7 +3,7 @@ package moneytracker.repositories.impl;
 import moneytracker.model.Filter;
 import moneytracker.model.Rule;
 import moneytracker.model.Tag;
-import moneytracker.model.User;
+import moneytracker.model.ApplicationUser;
 import moneytracker.repositories.TagRepository;
 import moneytracker.repositories.mappers.TagMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +31,7 @@ public class TagRepositoryImpl implements TagRepository {
     }
 
     @Override
-    public Tag get(User owner, Long id) {
+    public Tag get(ApplicationUser owner, Long id) {
         return template.queryForObject(
             "SELECT ID, CREATED_AT, NAME, COLOR " +
                 "FROM MT_TB_TAGS " +
@@ -85,7 +85,7 @@ public class TagRepositoryImpl implements TagRepository {
     }
 
     @Override
-    public List<Tag> list(User owner) {
+    public List<Tag> list(ApplicationUser owner) {
         return template.query(
             "SELECT ID, CREATED_AT, NAME, COLOR " +
                 "FROM MT_TB_TAGS " +
@@ -97,7 +97,7 @@ public class TagRepositoryImpl implements TagRepository {
     }
 
     @Override
-    public List<Tag> list(User owner, List<Long> ids) {
+    public List<Tag> list(ApplicationUser owner, List<Long> ids) {
         return template.query(
             "SELECT ID, CREATED_AT, NAME, COLOR " +
                 "FROM MT_TB_TAGS " +
@@ -111,7 +111,7 @@ public class TagRepositoryImpl implements TagRepository {
     }
 
     @Override
-    public List<Tag> list(User owner, Filter filter) {
+    public List<Tag> list(ApplicationUser owner, Filter filter) {
         return template.query(
             "SELECT T.ID, T.CREATED_AT, T.NAME, T.COLOR " +
                 "FROM MT_TB_TAGS T " +
@@ -126,7 +126,7 @@ public class TagRepositoryImpl implements TagRepository {
     }
 
     @Override
-    public List<Tag> list(User owner, Rule rule) {
+    public List<Tag> list(ApplicationUser owner, Rule rule) {
         return template.query(
             "SELECT T.ID, T.CREATED_AT, T.NAME, T.COLOR " +
                 "FROM MT_TB_TAGS T " +

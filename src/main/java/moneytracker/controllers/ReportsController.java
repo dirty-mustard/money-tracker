@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 import moneytracker.model.PieChart;
 import moneytracker.model.Report;
 import moneytracker.model.Transaction;
-import moneytracker.model.User;
+import moneytracker.model.ApplicationUser;
 import moneytracker.security.SecurityContext;
 import moneytracker.services.ReportService;
 import moneytracker.services.TransactionService;
@@ -86,7 +86,7 @@ public class ReportsController {
     @RequestMapping(value = "/{id}/transactions", method = RequestMethod.GET)
     @JsonView(TransactionView.class)
     public List<Transaction> transactions(@PathVariable Long id) {
-        User owner = securityContext.getAuthenticatedUser();
+        ApplicationUser owner = securityContext.getAuthenticatedUser();
         Report report = reportService.get(owner, id);
 
         return transactionService.search(owner, report.getFilter());
@@ -94,7 +94,7 @@ public class ReportsController {
 
     @RequestMapping(value = "/{id}/pieChart", method = RequestMethod.GET)
     public Collection<PieChart.Point> pieChart(@PathVariable Long id) {
-        User owner = securityContext.getAuthenticatedUser();
+        ApplicationUser owner = securityContext.getAuthenticatedUser();
         Report report = reportService.get(owner, id);
 
         return transactionService.pieChart(owner, report.getFilter()).getPoints();

@@ -3,7 +3,7 @@ package moneytracker.controllers;
 import com.fasterxml.jackson.annotation.JsonView;
 import moneytracker.model.Filter;
 import moneytracker.model.Transaction;
-import moneytracker.model.User;
+import moneytracker.model.ApplicationUser;
 import moneytracker.security.SecurityContext;
 import moneytracker.services.TagService;
 import moneytracker.services.TransactionService;
@@ -49,7 +49,7 @@ public class TransactionsController {
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
     @JsonView(TransactionView.class)
     public Transaction update(@PathVariable String id, @RequestBody List<Long> tagsIds) {
-        User owner = securityContext.getAuthenticatedUser();
+        ApplicationUser owner = securityContext.getAuthenticatedUser();
 
         Transaction transaction = transactionService.get(owner, id);
         if (CollectionUtils.isNotEmpty(tagsIds)) {

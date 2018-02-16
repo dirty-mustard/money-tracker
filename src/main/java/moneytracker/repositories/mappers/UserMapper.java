@@ -1,22 +1,22 @@
 package moneytracker.repositories.mappers;
 
-import moneytracker.model.User;
+import moneytracker.model.ApplicationUser;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class UserMapper implements RowMapper<User> {
+public class UserMapper implements RowMapper<ApplicationUser> {
 
     @Override
-    public User mapRow(ResultSet resultSet, int i) throws SQLException {
-        User user = new User();
-        user.setId(resultSet.getLong("ID"));
-        user.setCreatedAt(resultSet.getTimestamp("CREATED_AT"));
-        user.setUsername(resultSet.getString("USERNAME"));
-        user.setPassword(resultSet.getString("PASSWORD"));
+    public ApplicationUser mapRow(ResultSet resultSet, int i) throws SQLException {
+        ApplicationUser applicationUser = new ApplicationUser();
+        applicationUser.setId(resultSet.getLong("ID"));
+        applicationUser.setCreatedAt(resultSet.getTimestamp("CREATED_AT"));
+        applicationUser.setUsername(resultSet.getString("USERNAME"));
+        applicationUser.setPassword(resultSet.getString("PASSWORD"));
 
-        return user;
+        return applicationUser;
     }
 
 }

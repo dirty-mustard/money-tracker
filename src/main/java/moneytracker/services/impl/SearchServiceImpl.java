@@ -1,7 +1,7 @@
 package moneytracker.services.impl;
 
 import moneytracker.model.SearchResult;
-import moneytracker.model.User;
+import moneytracker.model.ApplicationUser;
 import moneytracker.repositories.TransactionRepository;
 import moneytracker.model.Filter;
 import moneytracker.services.SearchService;
@@ -15,7 +15,7 @@ public class SearchServiceImpl implements SearchService {
     private TransactionRepository transactionRepository;
 
     @Override
-    public SearchResult search(User owner, Filter filter) {
+    public SearchResult search(ApplicationUser owner, Filter filter) {
         SearchResult searchResult = new SearchResult();
         searchResult.setTransactions(transactionRepository.list(owner, filter));
 

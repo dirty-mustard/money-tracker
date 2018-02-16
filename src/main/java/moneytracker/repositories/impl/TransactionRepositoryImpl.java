@@ -7,10 +7,11 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 import moneytracker.model.Filter;
 import moneytracker.model.Tag;
 import moneytracker.model.Transaction;
-import moneytracker.model.User;
+import moneytracker.model.ApplicationUser;
 import moneytracker.repositories.TransactionRepository;
 import moneytracker.views.TransactionIndexView;
 import org.apache.log4j.Logger;
+import org.elasticsearch.action.search.SearchRequestBuilder;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.Client;
 import org.elasticsearch.index.query.BoolQueryBuilder;
@@ -55,7 +56,7 @@ public class TransactionRepositoryImpl implements TransactionRepository {
     private Client elastic;
 
     @Override
-    public Transaction get(User owner, String id) {
+    public Transaction get(ApplicationUser owner, String id) {
         SearchResponse response = elastic.prepareSearch("transactions")
             .setTypes("transaction")
             .setFetchSource(
@@ -129,11 +130,11 @@ public class TransactionRepositoryImpl implements TransactionRepository {
         return response.getHits().totalHits() == 1;
     }
 
-    public List<Transaction> list(User owner) {
+    public List<Transaction> list(ApplicationUser owner) {
         return getList(owner, QueryBuilders.termQuery("owner", owner.getId()));
     }
 
-    public List<Transaction> list(User owner, Filter filter) {
+    public List<Transaction> list(ApplicationUser owner, Filter filter) {
         BoolQueryBuilder queryBuilder = QueryBuilders.boolQuery();
         queryBuilder.must(QueryBuilders.termQuery("owner", owner.getId()));
 
@@ -260,7 +261,7 @@ public class TransactionRepositoryImpl implements TransactionRepository {
     }
 
     @Override
-    public Map<Long, BigDecimal> pieChart(User owner, Filter filter) {
+    public Map<Long, BigDecimal> pieChart(ApplicationUser owner, Filter filter) {
         BoolQueryBuilder queryBuilder = QueryBuilders.boolQuery();
         queryBuilder.must(QueryBuilders.termQuery("owner", owner.getId()));
 
@@ -305,7 +306,7 @@ public class TransactionRepositoryImpl implements TransactionRepository {
         return result;
     }
 
-    private List<Transaction> list(User owner, Tag tag) {
+    private List<Transaction> list(ApplicationUser owner, Tag tag) {
         BoolQueryBuilder queryBuilder = QueryBuilders.boolQuery()
             .must(QueryBuilders.termQuery(
                 "owner",
@@ -319,8 +320,8 @@ public class TransactionRepositoryImpl implements TransactionRepository {
         return getList(owner, queryBuilder);
     }
 
-    private List<Transaction> getList(User owner, QueryBuilder queryBuilder) {
-        SearchResponse response = elastic.prepareSearch("transactions")
+    private List<Transaction> getList(ApplicationUser owner, QueryBuilder queryBuilder) {
+        SearchRequestBuilder requestBuilder = elastic.prepareSearch("transactions")
             .setTypes("transaction")
             .setFetchSource(
                 new String[] {},
@@ -329,8 +330,11 @@ public class TransactionRepositoryImpl implements TransactionRepository {
             .setQuery(queryBuilder)
             .addSort("date", SortOrder.DESC)
             .setFrom(0)
-            .setSize(10000)
-            .get();
+            .setSize(10000);
+
+        String query = requestBuilder.toString();
+
+        SearchResponse response = requestBuilder.get();
 
         List<Transaction> transactions = new ArrayList<>();
 

@@ -3,7 +3,7 @@ package moneytracker.facades.impl;
 import moneytracker.facades.ImportFacade;
 import moneytracker.model.Bank;
 import moneytracker.model.Transaction;
-import moneytracker.model.User;
+import moneytracker.model.ApplicationUser;
 import moneytracker.parsers.TransactionParser;
 import moneytracker.parsers.TransactionParserException;
 import moneytracker.repositories.TransactionRepository;
@@ -28,7 +28,7 @@ public class ImportFacadeImpl implements ImportFacade {
     @Autowired
     private RuleService ruleService;
 
-    public void importCsv(User owner, Bank bank, InputStream inputStream) throws TransactionParserException {
+    public void importCsv(ApplicationUser owner, Bank bank, InputStream inputStream) throws TransactionParserException {
         try {
 
             InputStreamReader reader = new InputStreamReader(inputStream);

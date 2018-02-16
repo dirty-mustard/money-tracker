@@ -2,7 +2,7 @@ package moneytracker.repositories.impl;
 
 import moneytracker.model.Report;
 import moneytracker.model.ReportChart;
-import moneytracker.model.User;
+import moneytracker.model.ApplicationUser;
 import moneytracker.repositories.ReportRepository;
 import moneytracker.repositories.mappers.ReportChartMapper;
 import moneytracker.repositories.mappers.ReportMapper;
@@ -32,7 +32,7 @@ public class ReportRepositoryImpl implements ReportRepository {
     }
 
     @Override
-    public Report get(User owner, Long id) {
+    public Report get(ApplicationUser owner, Long id) {
         Report report = template.queryForObject(
             "SELECT ID, CREATED_AT, NAME, ICON, FILTER_ID " +
                 "FROM MT_TB_REPORTS " +
@@ -133,7 +133,7 @@ public class ReportRepositoryImpl implements ReportRepository {
     }
 
     @Override
-    public List<Report> list(User owner) {
+    public List<Report> list(ApplicationUser owner) {
         List<Report> reports = template.query(
             "SELECT ID, CREATED_AT, NAME, ICON, FILTER_ID " +
                 "FROM MT_TB_REPORTS " +

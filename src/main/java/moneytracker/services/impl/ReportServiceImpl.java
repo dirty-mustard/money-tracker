@@ -3,7 +3,7 @@ package moneytracker.services.impl;
 import moneytracker.exceptions.NotFoundException;
 import moneytracker.model.Filter;
 import moneytracker.model.Report;
-import moneytracker.model.User;
+import moneytracker.model.ApplicationUser;
 import moneytracker.repositories.FilterRepository;
 import moneytracker.repositories.ReportRepository;
 import moneytracker.repositories.TagRepository;
@@ -28,7 +28,7 @@ public class ReportServiceImpl implements ReportService {
     private TagRepository tagRepository;
 
     @Override
-    public List<Report> list(User owner) {
+    public List<Report> list(ApplicationUser owner) {
         List<Report> reports = reportRepository.list(owner);
         reports.forEach(report -> {
             report.setFilter(filterRepository.get(owner, report.getFilter().getId()));
@@ -38,7 +38,7 @@ public class ReportServiceImpl implements ReportService {
     }
 
     @Override
-    public Report get(User owner, Long id) throws NotFoundException {
+    public Report get(ApplicationUser owner, Long id) throws NotFoundException {
         try {
             Report report = reportRepository.get(owner, id);
 

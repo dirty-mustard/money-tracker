@@ -2,7 +2,7 @@ package moneytracker.repositories.mappers;
 
 import moneytracker.model.Filter;
 import moneytracker.model.Report;
-import moneytracker.model.User;
+import moneytracker.model.ApplicationUser;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
@@ -10,9 +10,9 @@ import java.sql.SQLException;
 
 public class ReportMapper implements RowMapper<Report> {
 
-    private User owner;
+    private ApplicationUser owner;
 
-    public ReportMapper(User owner) {
+    public ReportMapper(ApplicationUser owner) {
         this.owner = owner;
     }
 

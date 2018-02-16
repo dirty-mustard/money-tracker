@@ -2,7 +2,7 @@ package moneytracker.services.impl;
 
 import moneytracker.exceptions.NotFoundException;
 import moneytracker.model.Tag;
-import moneytracker.model.User;
+import moneytracker.model.ApplicationUser;
 import moneytracker.repositories.TagRepository;
 import moneytracker.repositories.TransactionRepository;
 import moneytracker.services.TagService;
@@ -23,17 +23,17 @@ public class TagServiceImpl implements TagService {
     private TransactionRepository transactionRepository;
 
     @Override
-    public List<Tag> list(User owner) {
+    public List<Tag> list(ApplicationUser owner) {
         return tagRepository.list(owner);
     }
 
     @Override
-    public List<Tag> list(User owner, List<Long> ids) {
+    public List<Tag> list(ApplicationUser owner, List<Long> ids) {
         return tagRepository.list(owner, ids);
     }
 
     @Override
-    public Tag get(User owner, Long id) throws NotFoundException {
+    public Tag get(ApplicationUser owner, Long id) throws NotFoundException {
         try {
             return tagRepository.get(owner, id);
         } catch (DataAccessException e) {

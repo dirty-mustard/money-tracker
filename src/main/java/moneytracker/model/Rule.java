@@ -2,7 +2,6 @@ package moneytracker.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -47,7 +46,7 @@ public class Rule implements Entity, Serializable {
     @JsonDeserialize(contentUsing = TagDeserializer.class)
     private List<Tag> tagsToApply = new ArrayList<>();
 
-    private User owner;
+    private ApplicationUser owner;
 
     @Override
     @JsonView
@@ -103,11 +102,11 @@ public class Rule implements Entity, Serializable {
         this.tagsToApply = tagsToApply;
     }
 
-    public User getOwner() {
+    public ApplicationUser getOwner() {
         return owner;
     }
 
-    public void setOwner(User owner) {
+    public void setOwner(ApplicationUser owner) {
         this.owner = owner;
     }
 

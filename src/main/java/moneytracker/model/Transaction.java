@@ -65,7 +65,7 @@ public class Transaction implements Entity, Serializable {
 
     @JsonView(TransactionIndexView.class)
     @JsonIdentityReference(alwaysAsId = true)
-    private User owner;
+    private ApplicationUser owner;
 
     @Override
     @JsonView
@@ -161,11 +161,11 @@ public class Transaction implements Entity, Serializable {
         this.locked = locked;
     }
 
-    public User getOwner() {
+    public ApplicationUser getOwner() {
         return owner;
     }
 
-    public void setOwner(User owner) {
+    public void setOwner(ApplicationUser owner) {
         this.owner = owner;
     }
 

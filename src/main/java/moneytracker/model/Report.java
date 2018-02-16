@@ -57,7 +57,7 @@ public class Report implements Entity, Serializable {
         add(ReportChart.PIE);
     }};
 
-    private User owner;
+    private ApplicationUser owner;
 
     @Override
     @JsonView
@@ -113,11 +113,11 @@ public class Report implements Entity, Serializable {
         this.charts = charts;
     }
 
-    public User getOwner() {
+    public ApplicationUser getOwner() {
         return owner;
     }
 
-    public void setOwner(User owner) {
+    public void setOwner(ApplicationUser owner) {
         this.owner = owner;
     }
 

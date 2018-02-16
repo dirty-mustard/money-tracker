@@ -1,21 +1,18 @@
 package moneytracker.services;
 
 import moneytracker.exceptions.NotFoundException;
-import moneytracker.model.Filter;
 import moneytracker.model.Tag;
-import moneytracker.model.Transaction;
-import moneytracker.model.User;
+import moneytracker.model.ApplicationUser;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public interface TagService {
 
-    List<Tag> list(User owner);
+    List<Tag> list(ApplicationUser owner);
 
-    List<Tag> list(User owner, List<Long> ids);
+    List<Tag> list(ApplicationUser owner, List<Long> ids);
 
-    Tag get(User owner, Long id) throws NotFoundException;
+    Tag get(ApplicationUser owner, Long id) throws NotFoundException;
 
     void save(Tag tag);
 

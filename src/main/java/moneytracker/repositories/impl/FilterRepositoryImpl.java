@@ -3,7 +3,7 @@ package moneytracker.repositories.impl;
 import moneytracker.model.Filter;
 import moneytracker.model.FilterOption;
 import moneytracker.model.Tag;
-import moneytracker.model.User;
+import moneytracker.model.ApplicationUser;
 import moneytracker.repositories.FilterRepository;
 import moneytracker.repositories.mappers.FilterMapper;
 import moneytracker.repositories.mappers.FilterOptionMapper;
@@ -33,7 +33,7 @@ public class FilterRepositoryImpl implements FilterRepository {
     }
 
     @Override
-    public Filter get(User owner, Long id) {
+    public Filter get(ApplicationUser owner, Long id) {
         Filter filter = template.queryForObject(
             "SELECT ID, CREATED_AT, NAME, AMOUNT_FROM, AMOUNT_TO, DESCRIPTION, FROM_DATE, TO_DATE, ACCOUNT_HOLDER, " +
                     "ACCOUNT, OFFSET_ACCOUNT " +
@@ -183,7 +183,7 @@ public class FilterRepositoryImpl implements FilterRepository {
     }
 
     @Override
-    public List<Filter> list(User owner) {
+    public List<Filter> list(ApplicationUser owner) {
         List<Filter> filters = template.query(
             "SELECT ID, CREATED_AT, NAME, AMOUNT_FROM, AMOUNT_TO, DESCRIPTION, FROM_DATE, TO_DATE, ACCOUNT_HOLDER, " +
                     "ACCOUNT, OFFSET_ACCOUNT " +

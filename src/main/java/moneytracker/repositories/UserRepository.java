@@ -1,9 +1,11 @@
 package moneytracker.repositories;
 
-import moneytracker.model.User;
+import moneytracker.model.ApplicationUser;
 
 public interface UserRepository {
 
-    User getByUsername(String username);
+    ApplicationUser getByUsername(String username);
+
+    void save(ApplicationUser applicationUser);
 
 }

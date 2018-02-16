@@ -2,15 +2,15 @@ package moneytracker.services;
 
 import moneytracker.exceptions.NotFoundException;
 import moneytracker.model.Filter;
-import moneytracker.model.User;
+import moneytracker.model.ApplicationUser;
 
 import java.util.List;
 
 public interface FilterService {
 
-    List<Filter> list(User owner);
+    List<Filter> list(ApplicationUser owner);
 
-    Filter get(User owner, Long id) throws NotFoundException;
+    Filter get(ApplicationUser owner, Long id) throws NotFoundException;
 
     void save(Filter filter);
 

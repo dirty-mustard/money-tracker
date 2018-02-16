@@ -3,7 +3,7 @@ package moneytracker.services.impl;
 import moneytracker.exceptions.NotFoundException;
 import moneytracker.model.Rule;
 import moneytracker.model.Transaction;
-import moneytracker.model.User;
+import moneytracker.model.ApplicationUser;
 import moneytracker.repositories.FilterRepository;
 import moneytracker.repositories.RuleRepository;
 import moneytracker.repositories.TagRepository;
@@ -32,7 +32,7 @@ public class RuleServiceImpl implements RuleService {
     private TransactionRepository transactionRepository;
 
     @Override
-    public List<Rule> list(User owner) {
+    public List<Rule> list(ApplicationUser owner) {
         List<Rule> rules = ruleRepository.list(owner);
         rules.forEach(rule -> {
             rule.setTagsToApply(tagRepository.list(owner, rule));
@@ -43,7 +43,7 @@ public class RuleServiceImpl implements RuleService {
     }
 
     @Override
-    public Rule get(User owner, Long id) throws NotFoundException {
+    public Rule get(ApplicationUser owner, Long id) throws NotFoundException {
         try {
             Rule rule = ruleRepository.get(owner, id);
             rule.setTagsToApply(tagRepository.list(owner, rule));
@@ -69,7 +69,7 @@ public class RuleServiceImpl implements RuleService {
 
     @Override
     @Transactional
-    public void runAll(User owner) {
+    public void runAll(ApplicationUser owner) {
         List<Transaction> transactions = transactionRepository.list(owner);
         transactions.stream().filter(transaction -> !transaction.isLocked()).forEach(transaction -> {
             transaction.getTags().clear();
@@ -80,7 +80,7 @@ public class RuleServiceImpl implements RuleService {
     }
 
     @Override
-    public void runAll(User owner, Transaction transaction) {
+    public void runAll(ApplicationUser owner, Transaction transaction) {
         List<Rule> rules = list(owner);
         rules.stream().filter(
             rule -> !transaction.isLocked() && rule.isEnabled() && rule.getFilter().matches(transaction)

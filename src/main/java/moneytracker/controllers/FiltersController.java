@@ -2,7 +2,7 @@ package moneytracker.controllers;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import moneytracker.model.Transaction;
-import moneytracker.model.User;
+import moneytracker.model.ApplicationUser;
 import moneytracker.security.SecurityContext;
 import moneytracker.model.Filter;
 import moneytracker.services.FilterService;
@@ -79,7 +79,7 @@ public class FiltersController {
     @RequestMapping(value = "/{id}/transactions", method = RequestMethod.GET)
     @JsonView(TransactionView.class)
     public List<Transaction> transactions(@PathVariable Long id) {
-        User owner = securityContext.getAuthenticatedUser();
+        ApplicationUser owner = securityContext.getAuthenticatedUser();
         Filter filter = filterService.get(owner, id);
 
         return transactionService.search(owner, filter);
