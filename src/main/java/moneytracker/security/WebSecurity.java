@@ -15,7 +15,8 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
-import static moneytracker.security.SecurityConstants.SIGN_UP_URL;
+import static moneytracker.security.SecurityConstants.API_AUTH_SIGNUP;
+import static moneytracker.security.SecurityConstants.API_AUTH_REFRESH;
 
 @EnableWebSecurity
 public class WebSecurity extends WebSecurityConfigurerAdapter {
@@ -31,10 +32,12 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.cors().and().csrf().disable().authorizeRequests()
-                .antMatchers(HttpMethod.POST, SIGN_UP_URL).permitAll()
+        http
+            .cors().and().csrf().disable()
+            .authorizeRequests()
+//                .antMatchers(API_AUTH_SIGNUP).permitAll() // Registration endpoint
                 .anyRequest().authenticated()
-                .and()
+            .and()
                 .addFilter(new JWTAuthenticationFilter(authenticationManager(), secret))
                 .addFilter(new JWTAuthorizationFilter(authenticationManager(), secret))
                 // this disables session creation on Spring Security
@@ -51,7 +54,23 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
         return new WebMvcConfigurerAdapter() {
             @Override
             public void addCorsMappings(final CorsRegistry registry) {
-                registry.addMapping("/api/**");
+                registry.addMapping("/api/**")
+                        .allowedOrigins("*")
+                        .allowedMethods(
+                                HttpMethod.GET.name(),
+                                HttpMethod.POST.name(),
+                                HttpMethod.PUT.name(),
+                                HttpMethod.DELETE.name()
+                        );
+                registry.addMapping("/login")
+                        .allowedOrigins("*")
+                        .exposedHeaders("Authorization")
+                        .allowedMethods(
+                                HttpMethod.GET.name(),
+                                HttpMethod.POST.name(),
+                                HttpMethod.PUT.name(),
+                                HttpMethod.DELETE.name()
+                        );
                 registry.addMapping("/import");
             }
         };

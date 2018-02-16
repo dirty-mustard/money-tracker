@@ -1,9 +1,11 @@
 package moneytracker.model;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonView;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import moneytracker.validation.Adding;
 import moneytracker.validation.Updating;
+import moneytracker.views.UserTokenView;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -18,10 +20,12 @@ public class ApplicationUser implements Entity, Serializable {
 
     private Long id;
 
+    @JsonView(UserTokenView.class)
     private Date createdAt = new Date();
 
     @NotNull(groups = Adding.class)
     @Size(groups = {Adding.class, Updating.class}, min = 1, max = 50)
+    @JsonView(UserTokenView.class)
     private String username;
 
     @NotNull(groups = Adding.class)

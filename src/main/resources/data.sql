@@ -1,6 +1,10 @@
 -- User
 INSERT INTO MT_TB_USERS (ID, USERNAME, PASSWORD)
-    VALUES (NEXTVAL('MT_SEQ_USERS'), 'admin', 'admin');
+    VALUES (
+    NEXTVAL('MT_SEQ_USERS'),
+    'admin',
+    '$2a$10$uzM0DZbQrAVZZnsyf2YgMeCQw0IyBlT1gg.lqRj34.mNGDIQ6AyW2' -- password
+    );
 
 -- Expenses
 INSERT INTO MT_TB_TAGS (ID, OWNER_ID, NAME, COLOR)
