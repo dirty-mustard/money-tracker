@@ -12,3 +12,5 @@ spring:
   data:
     elasticsearch:
       cluster-nodes: 0.0.0.0:9300
+
+application.jwt_secret: aSecretThatNeedToBeChanged
