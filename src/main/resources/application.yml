@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:postgresql://0.0.0.0:5432/moneytracker
+    url: jdbc:postgresql://database:5432/moneytracker
     username: moneytracker
     password: moneytracker
     driver-class-name: org.postgresql.Driver
@@ -11,6 +11,6 @@ spring:
       suffix: .jsp
   data:
     elasticsearch:
-      cluster-nodes: 0.0.0.0:9300
+      cluster-nodes: elasticsearch:9300
 
 application.jwt_secret: aSecretThatNeedToBeChanged
